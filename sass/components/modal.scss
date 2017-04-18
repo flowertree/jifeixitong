@@ -1,0 +1,44 @@
+/***模态框*/
+.commonModal {
+  .modal-content {
+    border-radius: 3px;
+  }
+  .modal-header {
+    background: #c3aa7e;
+    color: #fff;
+    border-radius: 3px 3px 0px 0px;
+    padding: 10px;
+    .close {
+      color: #fff;
+      text-shadow: none;
+      font-weight: 100;
+      opacity: 1;
+    }
+  }
+  .modal-footer {
+    border-top: none;
+    clear: both;
+    .btn_group {
+      text-align: center;
+      margin: 20px;
+      clear: both;
+      .btn_cancel {
+        padding: 3px 23px;
+        color: #c3aa7e;
+        background-color: #fff;
+        @include  border-radius(14px);
+        @include box-shadow(0 1px 3px #d0ccaf);
+      }
+      .btn_save {
+        padding: 3px 23px;
+        color: #fff;
+        background-color: #c3aa7e;
+        @include  border-radius(14px);
+        @include box-shadow(0 1px 3px #d0ccaf);
+      }
+      .station_space {
+        padding: 33px;
+      }
+    }
+  }
+}

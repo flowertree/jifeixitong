@@ -1,0 +1,389 @@
+<div class="common_container">
+    <h2>折扣管理</h2>
+    <div class="common_search">
+        <p class="discount_tabs fl">
+            <b data-id="time" v-on:click="discountType('time',$event)" v-bind:class="{ active_time_tabs: isTimeActive}">时间折扣</b>
+            <b data-id="traffic" v-on:click="discountType('traffic',$event)" v-bind:class="{ active_section_tabs: isSectionActive }">区间折扣</b>
+        </p>
+        <input type="text" placeholder="关键字" id="keywords">
+        <select id="billType">
+            <option value="0">有效</option>
+            <option value="1">无效</option>
+        </select>
+        <span id="discountSearch" @click="discount_search()"><i class="fa fa-search"></i> 查 询</span>
+        <span class="fr export_bill" id="discount_add"><i class="fa fa-plus"></i> 新增</span>
+    </div>
+    <div class="common_table">
+        <table class="discountTable" id="discount_table">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>资源名称</th>
+                    <th>所属区域</th>
+                    <th>租户名称</th>
+                    <th>状态</th>
+                    <th>时间单位</th>
+                    <th>预付比例</th>
+                    <th>折扣率</th>
+                    <th>版本号</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(data,index) in datas">
+                    <td>{{index+1}}</td>
+                    <td>{{data.resource_type_name}}</td>
+                    <td>{{data.zone_name}}</td>
+                    <td>{{data.tenant_name}}</td>
+                    <td>{{data.disabled == false ? '无效' : '有效'}}</td>
+                    <td>{{data.time}}</td>
+                    <td>{{data.prepaid}}%</td>
+                    <td>{{data.rate}}%</td>
+                    <td>{{data.version}}</td>
+                    <td style="display: none;" id="discount_id">{{data.id}}</td>
+                    <td class="operation_column">
+                        <a href="javascript:;" @click="discount_detail(index,$event)">详情</a>
+                        <a href="javascript:;" @click="discount_edit(index,$event)">编辑</a>
+                        <a href="javascript:;" @click="discount_del(index,$event)">删除</a>
+                    </td>
+                </tr>
+                <!---没有数据的时候的显示情况-->
+                <tr>
+                    <td colspan="10" v-show="isShow" v-html="noDatas">{{noDatas}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--新增时间折扣信息-->
+<div class="modal fade" id="discount_time_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabels">
+    <div class="modal-dialog commonModal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabes">新增时间折扣信息</h4>
+            </div>
+            <div class="modal-body account_add">
+                <h2>
+                    <span class="fl">资源名称 <input type="text" placeholder="请输入资源名称"/></span>
+                    <span class="fr">所属区域
+                        <select>
+                            <option value="0">请选择区域</option>
+                        </select>
+                    </span>
+                </h2>
+                <h2>
+                    <span class="fl">租户名称  <input type="text" placeholder="请输入名称" /></span>
+                    <span class="fr">
+                         状态
+                        <select>
+                            <option value="0">请选择状态</option>
+                        </select>
+                    </span>
+                </h2>
+                <h2>
+                    <span class="fl" style="margin-left: -15px;">预付百分比  <input type="text" placeholder="请输入" /></span>
+                    <span class="fr">
+                        时间
+                        <select>
+                            <option value="0">请选择时间类型</option>
+                        </select>
+                    </span>
+                </h2>
+                <h2>
+                    <span class="fl">版&nbsp;&nbsp;本&nbsp;号 <input type="text" placeholder="请输入版本号"/></span>
+                    <span class="fr">折扣率 <input type="text" placeholder="请输入" /></span>
+                </h2>
+            </div>
+            <div class="modal-footer">
+                <div class="btn_group">
+                    <a href="#" class="btn_cancel" data-dismiss="modal">取消</a>
+                    <a class="station_space"></a>
+                    <a href="#" class="btn_save">确定</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--新增区间折扣信息-->
+<div class="modal fade" id="discount_section_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog commonModal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">新增区间折扣信息</h4>
+            </div>
+            <div class="modal-body account_add">
+                <h2>
+                    <span class="fl">资源名称 <input type="text" placeholder="请输入资源名称"/></span>
+                    <span class="fr">所属区域
+                        <select>
+                            <option value="0">请选择区域</option>
+                        </select>
+                    </span>
+                </h2>
+                <h2>
+                    <span class="fl">租户名称  <input type="text" placeholder="请输入名称" /></span>
+                    <span class="fr">版本号 <input type="text" placeholder="请输入版本号" /></span>
+                </h2>
+                <h2>
+                    <span class="fl">折&nbsp;&nbsp;扣&nbsp;率 <input type="text" placeholder="请输入"/></span>
+                </h2>
+                <h2>
+                    <span class="fl">折扣方案</span>
+                    <div class="fl common_container" style="padding: 0;margin-left: -16px;">
+                        <div class="common_table">
+                            <table class="discount_table">
+                                <thead>
+                                    <tr>
+                                        <th>流量</th>
+                                        <th>区间</th>
+                                        <th>折扣(%)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" value="1"/></td>
+                                        <td><span class="select_btn"><i class="fa fa-angle-left"></i><i class="fa fa-angle-double-left"></i><i class="fa fa-angle-double-right"></i><i class="fa fa-angle-right"></i></span></td>
+                                        <td><input type="text" value="0"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" value="1"/></td>
+                                        <td><span class="select_btn"><i class="fa fa-angle-left"></i><i class="fa fa-angle-double-left"></i><i class="fa fa-angle-double-right"></i><i class="fa fa-angle-right"></i></span></td>
+                                        <td><input type="text" value="0"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" value="1"/></td>
+                                        <td><span class="select_btn"><i class="fa fa-angle-left"></i><i class="fa fa-angle-double-left"></i><i class="fa fa-angle-double-right"></i><i class="fa fa-angle-right"></i></span></td>
+                                        <td><input type="text" value="0"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" value="1"/></td>
+                                        <td><span class="select_btn"><i class="fa fa-angle-left"></i><i class="fa fa-angle-double-left"></i><i class="fa fa-angle-double-right"></i><i class="fa fa-angle-right"></i></span></td>
+                                        <td><input type="text" value="0"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3"><a class="discount_scheme_add"><i class="fa fa-plus"></i> 新建</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </h2>
+            </div>
+            <div class="modal-footer">
+                <div class="btn_group">
+                    <a href="#" class="btn_cancel" data-dismiss="modal">取消</a>
+                    <a class="station_space"></a>
+                    <a href="#" class="btn_save">确定</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--编辑时间折扣信息-->
+<div class="modal fade" id="discount_time_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog commonModal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">编辑时间折扣信息</h4>
+            </div>
+            <div class="modal-body account_add">
+                <h2>
+                    <span class="fl">资源名称 <b>ziyuanmingcheng</b></span>
+                    <span class="fr">所属区域
+                        <select>
+                            <option value="0">北京A区</option>
+                        </select>
+                    </span>
+                </h2>
+                <h2>
+                    <span class="fl">租户名称  <input type="text" placeholder="请输入名称" value="zuhumingcheng"/></span>
+                    <span class="fr">
+                         状态
+                        <select>
+                            <option value="0">有效</option>
+                        </select>
+                    </span>
+                </h2>
+                <h2>
+                    <span class="fl" style="margin-left: -15px;">预付百分比  <input type="text" placeholder="请输入" value="60%"/></span>
+                    <span class="fr">
+                        时间
+                        <select>
+                            <option value="0">小时</option>
+                        </select>
+                    </span>
+                </h2>
+                <h2>
+                    <span class="fl">版&nbsp;&nbsp;本&nbsp;号 <input type="text" placeholder="请输入版本号" value="ID562385"/></span>
+                    <span class="fr">折扣率 <input type="text" placeholder="请输入" value="95%"/></span>
+                </h2>
+            </div>
+            <div class="modal-footer">
+                <div class="btn_group">
+                    <a href="#" class="btn_cancel" data-dismiss="modal">取消</a>
+                    <a class="station_space"></a>
+                    <a href="#" class="btn_save">确定</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--编辑区间折扣信息-->
+<div class="modal fade" id="discount_section_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog commonModal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">编辑区间折扣信息</h4>
+            </div>
+            <div class="modal-body account_add">
+                <h2>
+                    <span class="fl">资源名称 <input type="text" placeholder="请输入资源名称" value="ziyuanmingcheng"/></span>
+                    <span class="fr">所属区域
+                        <select>
+                            <option value="0">北京A区</option>
+                        </select>
+                    </span>
+                </h2>
+                <h2>
+                    <span class="fl">租户名称  <input type="text" placeholder="请输入名称" value="zuhumingcheng"/></span>
+                    <span class="fr">状态
+                        <select>
+                            <option value="0">有效</option>
+                        </select>
+                    </span>
+                </h2>
+                <h2>
+                    <span class="fl">版&nbsp;&nbsp;本&nbsp;号 <input type="text" placeholder="请输入版本号" value="ID562385"/></span>
+                    <span class="fr">折扣率 <input type="text" placeholder="请输入" value="95%"/></span>
+                </h2>
+                <h2>
+                    <span class="fl">折扣方案</span>
+                    <div class="fl common_container" style="padding: 0;margin-left: -16px;">
+                        <div class="common_table">
+                            <table class="discount_table">
+                                <thead>
+                                <tr>
+                                    <th>流量</th>
+                                    <th>区间</th>
+                                    <th>折扣(%)</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><input type="text" value="1"/></td>
+                                    <td><span class="select_btn"><i class="fa fa-angle-left"></i><i class="fa fa-angle-double-left"></i><i class="fa fa-angle-double-right"></i><i class="fa fa-angle-right"></i></span></td>
+                                    <td><input type="text" value="0"/></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" value="1"/></td>
+                                    <td><span class="select_btn"><i class="fa fa-angle-left"></i><i class="fa fa-angle-double-left"></i><i class="fa fa-angle-double-right"></i><i class="fa fa-angle-right"></i></span></td>
+                                    <td><input type="text" value="0"/></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" value="1"/></td>
+                                    <td><span class="select_btn"><i class="fa fa-angle-left"></i><i class="fa fa-angle-double-left"></i><i class="fa fa-angle-double-right"></i><i class="fa fa-angle-right"></i></span></td>
+                                    <td><input type="text" value="0"/></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" value="1"/></td>
+                                    <td><span class="select_btn"><i class="fa fa-angle-left"></i><i class="fa fa-angle-double-left"></i><i class="fa fa-angle-double-right"></i><i class="fa fa-angle-right"></i></span></td>
+                                    <td><input type="text" value="0"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"><a class="discount_scheme_add"><i class="fa fa-plus"></i> 新建</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </h2>
+            </div>
+            <div class="modal-footer">
+                <div class="btn_group">
+                    <a href="#" class="btn_cancel" data-dismiss="modal">取消</a>
+                    <a class="station_space"></a>
+                    <a href="#" class="btn_save">确定</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--详情-->
+<div class="modal fade" id="discount_detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabelss">
+    <div class="modal-dialog commonModal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabess">详 情</h4>
+            </div>
+            <div class="modal-body account_add" style="margin-top: 20px;">
+                <div style="display: inline-block">
+                    <h2><span class="fl">资源名称：zhanghuming</span></h2>
+                    <h2><span class="fl">租户名称：zuhumingcheng</span></h2>
+                    <h2><span class="fl">时间：小时</span></h2>
+                    <h2><span class="fl">折扣率：95%</span></h2>
+                    <h2><span class="fl">创建时间：2017-04-03</span></h2>
+                    <h2><span class="fl">更新时间：2017-04-03</span></h2>
+                </div>
+                <div style="display: inline-block">
+                    <h2><span class="fl">所属区域：北京A区</span></h2>
+                    <h2><span class="fl">状态：有效</span></h2>
+                    <h2><span class="fl">预付百分比：60%</span></h2>
+                    <h2><span class="fl">版本号：ID98563</span></h2>
+                    <h2><span class="fl">创建人：admin</span></h2>
+                    <h2><span class="fl">更新人：admin</span></h2>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="btn_group">
+                    <a href="#" class="btn_save" data-dismiss="modal">关闭</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--编辑价格信息-->
+<div class="modal fade" id="price_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog commonModal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabe">编辑价格信息</h4>
+            </div>
+            <div class="modal-body account_add">
+                <h2>
+                    <span class="fl">资源名称：<b>zhanghuming</b></span>
+                    <span class="fr">所属区域
+                        <select>
+                            <option value="0">北京A区</option>
+                        </select>
+                    </span>
+                </h2>
+                <h2>
+                    <span class="fl">资源单价  <input type="text" placeholder="请输入金额" value="763.00"/></span>
+                    <span class="fr">资源单位 <input type="text" placeholder="" value="台"/></span>
+                </h2>
+                <h2>
+                    <span class="fl">版&nbsp;&nbsp;本&nbsp;号 <input type="text" placeholder="请输入版本号" value="G54745601"/></span>
+                    <span class="fr">
+                        状态
+                        <select>
+                            <option value="0">开启</option>
+                        </select>
+                    </span>
+                </h2>
+            </div>
+            <div class="modal-footer">
+                <div class="btn_group">
+                    <a href="#" class="btn_cancel" data-dismiss="modal">取消</a>
+                    <a class="station_space"></a>
+                    <a href="#" class="btn_save">确定</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,136 @@
+/****账户管理**/
+.account_name {
+  font-weight: inherit;
+  margin: 0;
+}
+.account_recharge {
+  padding: 30px 0px 15px 0px;
+  text-align: center;
+  h2 {
+    margin: 28px 0px 0px 0px;
+    input {
+      border: 1px solid #d0ccaf;
+      @include border-radius(3px);
+      width: 40%;
+    }
+  }
+  h2:last-child {
+    margin: 15px 0px 20px 0px;
+  }
+  .account_balance {
+    margin-left: 211px;
+    color: #c3aa7e;
+    display: flex;
+  }
+}
+.account_add {
+  text-align: center;
+  h2 {
+    padding: 10px;
+    clear: both;
+    span {
+      padding: 5px 20px;
+      select {
+        color: black;
+      }
+      b {
+        font-weight: lighter;
+        color: #c3aa7e;
+      }
+    }
+  }
+  .errorTitle {
+    padding:0px 90px;
+    color: #c3aa7e;
+  }
+}
+.account_detail_table {
+  background: #f4f3f0 !important;
+  color: #c3aa7e !important;
+}
+.account_info {
+  background: #fff;
+  text-align: center;
+  @include border-radius(3px 3px 0px 0px);
+  .account_title {
+    padding: 30px 0px;
+    span {
+      padding: 10px 25px;
+      border-bottom: 2px solid #f4f3f0;
+      cursor: pointer;
+    }
+    .activeAccount {
+      border-bottom: 2px solid #c3aa7e;
+    }
+  }
+  .account_content {
+    margin: 40px;
+    div {
+      display: inline-block;
+      text-align: left;
+      p {
+        padding: 10px 20px;
+      }
+    }
+  }
+  .tenant_content {
+    margin: 40px;
+    table {
+      margin: 10px auto;
+      th,td {
+        text-align: center;
+      }
+      td {
+        padding: 10px 50px;
+      }
+    }
+  }
+}
+.recharge_details {
+  border-top: 2px solid #f4f3f0;
+  padding: 23px;
+  .dividing_line {
+    display: block;
+    background: #fff;
+    width: 60px;
+    margin: -36px auto;
+  }
+  select {
+    margin-top: 50px;
+  }
+  .recharge_title {
+    margin-left: 50px;
+    .recharge_amount {
+      font-size: 16px;
+      color: #c3aa7e;
+      font-weight: 600;
+    }
+  }
+}
+
+.tenant_list {
+  span {
+    display: inline-block;
+    padding: 10px 20px;
+    img {
+      cursor: pointer;
+      padding: 0px 3px;
+    }
+    input {
+      height: 28px;
+      width: 128px;
+    }
+  }
+  .span_del {
+    text-decoration: line-through;
+    color: #d6d6d6;
+  }
+  .new_add {
+    border: 1px solid #c3aa7e;
+    border-style: dashed;
+    padding: 2px 60px;
+    @include border-radius(3px);
+    cursor: pointer;
+    color: #c3aa7e;
+  }
+}

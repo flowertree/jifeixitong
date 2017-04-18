@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="Access-Control-Allow-Origin" content="*">
+  <title>计费运营后台管理系统</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.5 -->
+  <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="plugins/font-awesome-4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+  <!---项目所需要的样式-->
+  <link rel="stylesheet" href="css/base/reset.css" type="text/css">
+  <link rel="stylesheet" href="css/components/button.css" type="text/css">
+  <link rel="stylesheet" href="css/skins/aside-metal.css" type="text/css">
+  <link rel="stylesheet" href="font/style.css" type="text/css">
+  <!----引入日历插件的样式---->
+  <link rel="stylesheet" href="plugins/laydate-v1.1/laydate/need/laydate.css">
+  <link rel="stylesheet" href="css/layout/content.css" type="text/css">
+
+  <!--[if lt IE 9]>
+  <script src="dist/js/html5shiv.js"></script>
+  <script src="dist/js/respond.js"></script>
+  <![endif]-->
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <p class="main-logo">JIFEIYUNYING</p>
+    <section class="sidebar">
+      <ul class="sidebar-menu">
+        <li class="active treeview">
+          <a href="#" data-href="pages/overview.html" data-id="overview">
+            <div class="fl">
+              <i class="icon-dashboard block fl"></i>
+              <span class="block fl letterSpacing">总览</span>
+            </div>
+            <b class="hover_line block fr"></b>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#" data-href="pages/account.html" data-id="account">
+            <div class="fl">
+              <i class="icon-search block fl"></i>
+              <span class="block fl">账户管理</span>
+            </div>
+             <b class="hover_line block fr"></b>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#" data-href="pages/tenant.html" data-id="tenant">
+            <div class="fl">
+              <i class="icon-application block fl"></i>
+              <span class="block fl">租户管理</span>
+            </div>
+            <b class="hover_line block fr"></b>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#" data-href="pages/price.html" data-id="price">
+            <div class="fl">
+              <i class="icon-search block fl"></i>
+              <span class="block fl">价格管理</span>
+            </div>
+            <b class="hover_line block fr"></b>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#" data-href="pages/discount.html" data-id="discount">
+            <div class="fl">
+              <i class="icon-Jurisdiction block fl"></i>
+              <span class="block fl">折扣管理</span>
+            </div>
+            <b class="hover_line block fr"></b>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#" data-href="pages/transaction.html" data-id="transaction">
+            <div class="fl">
+              <i class="icon-role block fl"></i>
+              <span>交易管理</span>
+            </div>
+            <b class="hover_line block fr"></b>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#" data-href="pages/bill.html" data-id="bill">
+            <div class="fl">
+              <i class="icon-role block fl"></i>
+              <span>账单管理</span>
+            </div>
+            <b class="hover_line block fr"></b>
+          </a>
+        </li>
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+      <div class="overview_container">
+        <div class="overview_top">
+          <div class="countNums" id="revenueNums">
+            <div class="containerFixed">
+              <h2><span>{{ revenue_total }}</span><i> 元</i></h2>
+              <p class="counts">总营收</p>
+            </div>
+            <p class="currentVal">当月营收 <span>{{ revenue_monthly }}</span><i> 元</i></p>
+          </div>
+          <div class="centerLayout" id="bill_nums">
+            <div class="containerCenter">
+              <h2>{{ actual_arrival }}<i> 元</i></h2>
+              <p class="actualArrival">实际到账</p>
+            </div>
+            <div class="containerCenter noCount">
+              <h2>{{ non_arrival }}<i> 元</i></h2>
+              <p class="actualArrival">未到账</p>
+            </div>
+            <div class="containerCenter overdueBill">
+              <div>
+                <h2>{{ due_bill }}<i> 单</i></h2>
+                <p class="actualArrival">到期账单</p>
+              </div>
+            </div>
+            <div class="containerCenter oldBill">
+              <h2>{{ overdue_bill }}<i> 单</i></h2>
+              <p class="actualArrival">过期账单</p>
+            </div>
+          </div>
+          <div class="countTop">
+            <div class="resizeBigSm">
+              <img class="resizeBtn reBig" src="imgs/resize.png">
+              <img class="resizeBtn" style="display: none" src="imgs/resizeSm.png">
+            </div>
+            <div class="h2Title">
+              <h2>账户TOP10</h2>
+              <p class="countType" id="count_type">
+                <span v-on:click="account('consume',$event)" v-bind:class="{ activeTop10: isActive}">消费账户</span>
+                <span v-on:click="account('arrearage',$event)" v-bind:class="{ activeConsume: isConsume }">欠费账户</span>
+              </p>
+              <p>单位(元)</p>
+            </div>
+            <ul class="fl" id="accountTop">
+              <div v-for="(account,index) in accounts">
+                <li v-if="index>=0 && index<=4"><span class="titleNo">{{index+1}}</span><span  class="userTitle" v-bind:title="account.account_id">{{ account.account_id }}</span> --------- <span>{{account.amount}}</span></li>
+                <li v-if="index>4" class="liRight"><span class="titleNo">{{index+1}}</span><span  class="userTitle" v-bind:title="account.account_id">{{ account.account_id }}</span> --------- <span>{{account.amount}}</span></li>
+              </div>
+            </ul>
+            <span class="splitLine"></span>
+          </div>
+        </div>
+        <div class="overview_center">
+          <div class="drawcolumn fl">
+            <div class="chartTitle">
+              <h2>营收数环比趋势图</h2>
+              <p>单位(元)</p>
+            </div>
+            <div id="drawcolumn" style="height: 250px"></div>
+          </div>
+          <div class="drawcolumn tendency fl">
+            <div class="chartTitle">
+              <h2>资源收入趋势图</h2>
+              <p>单位(元)</p>
+            </div>
+            <div id="drowareaChart" style="height: 250px;"></div>
+          </div>
+        </div>
+        <div class="overview_bottom">
+          <div class="drawcolumn proportion fl">
+            <div class="chartTitle">
+              <h2>资源收入占比</h2>
+              <p>单位(元)</p>
+            </div>
+            <div id="drowPie" style="height: 250px;"></div>
+          </div>
+          <div class="drawcolumn top10 fl">
+            <div class="chartTitle">
+              <h2>资源收入TOP10</h2>
+              <p>单位(元)</p>
+            </div>
+            <ul class="fl" id="resource_income">
+              <div v-for="(item,index) in resources">
+                <li v-if="index>=0 && index<=4"><span class="titleNo">{{index+1}}</span><span class="userTitle" v-bind:title="item.resource">{{ item.resource }}</span> ---------  <span>{{item.amount}}</span></li>
+                <li v-if="index>4" class="liRight"><span class="titleNo">{{index+1}}</span><span class="userTitle" v-bind:title="item.resource">{{ item.resource }}</span> ---------  <span>{{item.amount}}</span></li>
+              </div>
+            </ul>
+            <span class="splitLine"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+</div><!--wrapper end-->
+<script src="plugins/requireJs/require.js" data-main="js/common/main"></script>
+<script src="plugins/laydate-v1.1/laydate/laydate.js"></script>
+</body>
+</html>

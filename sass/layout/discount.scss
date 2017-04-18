@@ -1,0 +1,79 @@
+/****折扣管理**/
+.discount_tabs {
+  margin-right: 6px;
+  b {
+    font-weight: lighter;
+  }
+  b:first-child {
+    padding: 2px 4px;
+    background: #f4f3f0;
+    color: #d0ba94;
+    border-radius: 4px 0 0 4px;
+    cursor: pointer;
+  }
+  b:last-child {
+    background: #f4f3f0;
+    padding: 2px 4px;
+    border-radius: 0px 4px 4px 0px;
+    color: #d0ba94;
+    margin-left: -3px;
+    cursor: pointer;
+  }
+  .active_time_tabs {
+    padding: 2px 4px !important;
+    background: #d0ba94 !important;
+    color: #fff !important;
+    border-radius: 4px 0 0 4px !important;
+    cursor: pointer !important;
+  }
+  .active_section_tabs {
+    background: #d0ba94 !important;
+    padding: 2px 4px !important;
+    border-radius: 0px 4px 4px 0px !important;
+    color: #fff !important;
+    cursor: pointer !important;
+  }
+}
+.discount_table {
+  th {
+    background: #f4f3f0;
+    color: #c3aa7e;
+  }
+  td {
+    input{
+      text-align: center;
+    }
+    span {
+      border: 1px solid #d0ccaf;
+      padding: 1px;
+      margin: 0px 22px;
+      background: #fff;
+      @include border-radius(3px);
+      i{
+        padding: 4px 10px;
+        border-right: 1px solid #d0ccaf;
+        cursor: pointer;
+      }
+      i:first-child {
+        margin-left: -1px;
+      }
+      i:last-child {
+        border-right:none;
+        margin-right: -1px;
+      }
+      .iActive {
+        background: #d0ccaf;
+        color: #fff;
+      }
+    }
+    a {
+      border: 1px solid #d0ccaf;
+      border-style: dashed;
+      padding: 4px 212px;
+      cursor: pointer;
+      @include border-radius(3px);
+      display: block;
+      color: #c3aa7e;
+    }
+  }
+}

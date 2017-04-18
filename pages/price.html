@@ -1,0 +1,188 @@
+<div id="price_vue">
+    <div class="common_container">
+        <h2>价格管理</h2>
+        <div class="common_search" id="price_search">
+            <input type="text" placeholder="关键字" v-model="keywords">
+            <select v-model="selected">
+                <option value="0">有效</option>
+                <option value="1">无效</option>
+            </select>
+            <span @click="price_search"><i class="fa fa-search"></i> 查 询</span>
+            <span class="fr export_bill" data-toggle="modal" data-target="#price_add"><i class="fa fa-plus"></i> 新增</span>
+        </div>
+        <div class="common_table">
+            <table id="price_table">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>资源名称</th>
+                    <th>所属区域</th>
+                    <th>资源单价</th>
+                    <th>资源单位</th>
+                    <th>版本号</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(data,index) in datas">
+                    <td>{{index+1}}</td>
+                    <td id="resource_name">{{data.resource_name}}</td>
+                    <td id="zone_name">{{data.zone_name}}</td>
+                    <td id="price">{{data.price}}</td>
+                    <td id="resource_units">{{data.resource_unit}}</td>
+                    <td id="version">{{data.version}}</td>
+                    <td id="isDisabled">{{data.disabled == false ? '有效' : '无效'}}</td>
+                    <td class="operation_column">
+                        <a href="#" @click="price_detail($event,index)">详情</a>
+                        <a href="#" @click="price_edit($event,index)">编辑</a>
+                        <a href="#" @click="price_del(index,data.id)">删除</a>
+                    </td>
+                </tr>
+                <td colspan="9" id="noDatas" v-show="isShow" v-html="noDatas">{{noDatas}}</td>
+                </tbody>
+            </table>
+            <div class="fr" id="pagination">
+                <ul class="pagination">
+                    <li>
+                        <a href="#" aria-label="Previous" @click="prevPages()">
+                            <span aria-hidden="true">&lt;</span>
+                        </a>
+                    </li>
+                    <li v-for="n in pageCount">
+                        <a href="javascripit:void(0)"  @click="activePages(n)">{{ n }}</a>
+                    </li>
+                    <li>
+                        <a href="#" aria-label="Next" @click="nextPages()">
+                            <span aria-hidden="true">&gt;</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--新增-->
+    <div class="modal fade" id="price_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabels">
+        <div class="modal-dialog commonModal" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabes">新增价格信息</h4>
+                </div>
+                <div class="modal-body account_add">
+                    <h2>
+                    <span class="fl">资源名称
+                        <select id="resource_select" v-model="resource_selected">
+                            <option v-for="option in resource_options" v-bind:value="option.id">{{option.name}}</option>
+                        </select>
+                    </span>
+                        <span class="fr">所属区域
+                        <select id="area_select" v-model="area_selected">
+                            <option v-for="option in area_options" v-bind:value="option.id">{{option.name}}</option>
+                        </select>
+                    </span>
+                    </h2>
+                    <h2>
+                        <span class="fl">资源单价  <input type="text" placeholder="请输入金额" v-model="resource_rate"/></span>
+                        <span class="fr">资源单位
+                        <select v-model="resource_unit">
+                            <option value="1">1</option>
+                            <option value="10">10</option>
+                            <option value="100">100</option>
+                            <option value="1000">1000</option>
+                        </select>
+                    </span>
+                    </h2>
+                    <!--<h2>
+                        <span class="fl">版&nbsp;&nbsp;本&nbsp;号 <input type="text" placeholder="请输入版本号" v-model="version"/></span>
+                        <span class="fr">
+                            状态
+                            <select id="status_select" v-model="status_selected">
+                                <option v-for="option in status_options" v-bind:value="option.id">{{option.name}}</option>
+                            </select>
+                        </span>
+                    </h2>-->
+                </div>
+                <div class="modal-footer">
+                    <div class="btn_group">
+                        <a href="#" class="btn_cancel" data-dismiss="modal">取消</a>
+                        <a class="station_space"></a>
+                        <a href="#" class="btn_save" @click="price_add_save()">确定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--详情-->
+    <div class="modal fade" id="price_detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabelss">
+        <div class="modal-dialog commonModal" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabess">详 情</h4>
+                </div>
+                <div class="modal-body account_add" v-for="data in modalDetailDatas" style="margin-top: 20px;">
+                    <div style="display: inline-block">
+                        <h2><span class="fl">资源名称：{{data.resource_name}}</span></h2>
+                        <h2><span class="fl">资源单价：{{data.price}}</span></h2>
+                        <h2><span class="fl">版本号：{{data.version}}</span></h2>
+                        <!--<h2><span class="fl">创建时间：2017-04-01</span></h2>
+                        <h2><span class="fl">更新时间：2017-04-03</span></h2>-->
+                    </div>
+                    <div style="display: inline-block">
+                        <h2><span class="fl">所属区域：{{data.zone_name}}</span></h2>
+                        <h2><span class="fl">资源单位：{{data.resource_unit}}</span></h2>
+                        <h2><span class="fl">状态：{{data.disabled== false ? '有效' : '无效'}}</span></h2>
+                        <!--<h2><span class="fl">创建人：admin</span></h2>
+                        <h2><span class="fl">更新人：admin</span></h2>-->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn_group">
+                        <a href="#" class="btn_save" data-dismiss="modal">关闭</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--编辑价格信息-->
+    <div class="modal fade" id="price_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog commonModal" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabe">编辑价格信息</h4>
+                </div>
+                <div class="modal-body account_add"  v-for="data in modalEditDatas">
+                    <h2>
+                        <span class="fl">资源名称：<b>{{data.resource_name}}</b></span>
+                        <span class="fr">所属区域：{{data.zone_name}}</span>
+                    </h2>
+                    <h2>
+                        <span class="fl">资源单价  <input type="text" placeholder="请输入金额" v-bind:value="data.price" id="resource_rate"/></span>
+                        <input type="hidden" v-bind:value="data.id" id="price_id_edit">
+                        <span class="fr">资源单位：{{data.resource_unit}}</span>
+                    </h2>
+                    <h2>
+                        <span class="fl">版&nbsp;&nbsp;本&nbsp;号：{{data.version}}</span>
+                        <span class="fr">
+                            状态
+                            <select v-model="status_selected">
+                                <option value="0">有效</option>
+                                <option value="1">无效</option>
+                            </select>
+                </span>
+                    </h2>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn_group" id="price_edit_save">
+                        <a href="#" class="btn_cancel" data-dismiss="modal">取消</a>
+                        <a class="station_space"></a>
+                        <a href="#" class="btn_save" @click="price_edit_save()">确定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

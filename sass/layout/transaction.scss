@@ -1,0 +1,43 @@
+/****交易管理**/
+.makeup_detail {
+  float: right;
+  width: 133px !important;
+  line-height: 20px;
+  padding: 2px 16px !important;
+}
+.transaction_file_down {
+  padding: 50px 15px;
+  .template_download {
+    color: #d0ba94;
+    cursor: pointer;
+  }
+  h2 {
+    padding: 10px 0px 5px 53px;
+    .select_input {
+      margin-right: 12px;
+      border: 1px solid #d0ba94;
+      border-radius: 3px;
+      width: 66%;
+    }
+    .file-upload {
+      padding: 0px 10px;
+      height: 22px;
+      line-height: 20px;
+      position: relative;
+      cursor: pointer;
+      color: #d0ba94;
+      border: 1px solid #d0ba94;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .file-upload  input {
+      position: absolute;
+      width: 450px;
+      right: 0;
+      top: 0;
+      opacity: 0;
+      filter: alpha(opacity=0);
+      cursor: pointer
+    }
+  }
+}

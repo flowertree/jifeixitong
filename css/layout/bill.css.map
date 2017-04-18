@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": ";AAAA,YAAY;AACZ,YAAa;EACX,WAAW,EAAE,IAAI;EACjB,OAAO,EAAE,QAAQ",
+"sources": ["../../sass/layout/bill.scss"],
+"names": [],
+"file": "bill.css"
+}

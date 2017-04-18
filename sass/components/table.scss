@@ -1,0 +1,63 @@
+/***common table***/
+.common_container {
+  padding: 0px 20px;
+  h2{
+    font-size: 18px;
+    color: #383838;
+  }
+  .common_search{
+    padding: 16px 0px;
+    input {
+      border: 1px solid #d0ccaf;
+      border-radius: 3px;
+      width: 250px;
+      height: 24px;
+    }
+    span {
+      width: 76px;
+      height: 22px;
+      background-color: #fff;
+      padding: 2px 13px;
+      color: #c3aa7e;
+      cursor: pointer;
+      @include border-radius(11px);
+      @include box-shadow(0 1px 3px #d0ccaf);
+    }
+  }
+  .common_table {
+    border-radius: 3px;
+    overflow: hidden;
+    table {
+      width:100%;
+      color: #5d6a75;
+      thead tr {
+        background: #c3aa7e;
+        color: #fff;
+        height: 36px;
+        th {
+          text-align: center;
+          input {
+            margin: 5px 13px;
+          }
+        }
+        .set_width {
+          width: 100px;
+        }
+      }
+      tbody tr:nth-child(even) {
+        background: #f4f3f0;
+        td {
+          padding: 5px 0px;
+          text-align: center;
+        }
+      }
+      tbody tr:nth-child(odd) {
+        background: #fff;
+        td {
+          padding: 5px 0px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

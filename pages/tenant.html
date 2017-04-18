@@ -1,0 +1,101 @@
+<div id="tenant_vue">
+    <div class="common_container">
+        <h2>租户管理</h2>
+        <div class="common_search">
+            <input type="text" placeholder="关键字" v-model="keywords">
+            <select v-model="selected">
+                <option value="0">有效</option>
+                <option value="1">无效</option>
+            </select>
+            <span id="tenantSearch" @click="tenant_search"><i class="fa fa-search"></i> 查 询</span>
+        </div>
+        <div class="common_table">
+            <table id="tenant_table">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>租户名称</th>
+                    <th>租户ID</th>
+                    <th>账户名称</th>
+                    <th>状态</th>
+                    <th>创建人</th>
+                    <th>创建时间</th>
+                    <th>修改人</th>
+                    <th>修改时间</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(data,index) in datas">
+                    <td>{{index+1}}</td>
+                    <td>{{data.tenant_name}}</td>
+                    <td id="tenant_id">{{data.tenant_id}}</td>
+                    <td id="account_name">{{data.account_name}}</td>
+                    <td>{{data.disabled == false ? '有效' : '无效'}}</td>
+                    <td>{{data.creator}}</td>
+                    <td>{{data.create_time}}</td>
+                    <td>{{data.updater}}</td>
+                    <td>{{data.update_time}}</td>
+                    <td id="account_id" style="display: none;">{{data.account_id}}</td>
+                    <td class="operation_column">
+                        <a href="#" v-if="data.account_name!='' && data.account_name!=null" @click="unbind(data.tenant_id,data.account_name)">解 绑</a>
+                        <a href="#" v-else @click="bind(data.tenant_id)">绑 定</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10" id="noDatas" v-show="isShow" v-html="noDatas">{{noDatas}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--解绑-->
+    <div class="modal fade" id="unbind" tabindex="-1" role="dialog" aria-labelledby="myModalLabels">
+        <div class="modal-dialog commonModal" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabels">解绑账户</h4>
+                </div>
+                <div class="modal-body unbind_account">
+                    <input type="hidden" v-model="tenant_id">
+                    <h2>当前已绑定账户 <span>{{unbind_account_name}}</span></h2>
+                    <h2 >是否确定解绑？</h2>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn_group tenant_unbind">
+                        <a href="#" class="btn_cancel" data-dismiss="modal">取消</a>
+                        <a class="station_space"></a>
+                        <a href="#" class="btn_save" @click="unbind_btn">确定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--绑定-->
+    <div class="modal fade" id="bind" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog commonModal" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">绑定账户</h4>
+                </div>
+                <div class="modal-body bind_account">
+                    <h2>账户名称
+                        <select v-model="accountName">
+                            <option value="0">请选择账户</option>
+                            <option v-for="option in account_options" v-bind:value="option.id">{{option.name}}</option>
+                        </select>
+                    </h2>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn_group tenant_bind">
+                        <a href="#" class="btn_cancel" data-dismiss="modal">取消</a>
+                        <a class="station_space"></a>
+                        <a href="#" class="btn_save" @click="bind_btn">确定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

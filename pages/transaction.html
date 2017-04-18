@@ -1,0 +1,155 @@
+<div class="common_container">
+    <h2>交易管理</h2>
+    <div class="common_search">
+        <input type="text" placeholder="关键字" id="keywords">
+        <select id="transactionType">
+            <option value="0">全部</option>
+        </select>
+        <span id="transactionSearch"><i class="fa fa-search"></i> 查 询</span>
+        <span class="makeup_detail" id="makeupDetail" data-toggle="modal"  data-target="#makeup_detail"><i class="fa fa-file-o"></i> 补录交易明细</span>
+    </div>
+    <div class="common_table">
+        <table>
+            <thead>
+                <tr>
+                    <th align="center">序号</th>
+                    <th>租户名称</th>
+                    <th>账户名称</th>
+                    <th>服务类型</th>
+                    <th>资源类型</th>
+                    <th>扣费时间</th>
+                    <th>交易类型</th>
+                    <th>账户入账/支出</th>
+                    <th>可用余额</th>
+                    <th>描述</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>账户账户01</td>
+                    <td>mingcheng</td>
+                    <td>服务类型A</td>
+                    <td>类型A</td>
+                    <td>2017-03-30 18:00</td>
+                    <td>充值</td>
+                    <td>30156828.00</td>
+                    <td>30156828.00</td>
+                    <td>描述描述</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>账户账户01</td>
+                    <td>mingcheng</td>
+                    <td>服务类型A</td>
+                    <td>类型A</td>
+                    <td>2017-03-30 18:00</td>
+                    <td>充值</td>
+                    <td>30156828.00</td>
+                    <td>30156828.00</td>
+                    <td>描述描述</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>账户账户01</td>
+                    <td>mingcheng</td>
+                    <td>服务类型A</td>
+                    <td>类型A</td>
+                    <td>2017-03-30 18:00</td>
+                    <td>充值</td>
+                    <td>30156828.00</td>
+                    <td>30156828.00</td>
+                    <td>描述描述</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>账户账户01</td>
+                    <td>mingcheng</td>
+                    <td>服务类型A</td>
+                    <td>类型A</td>
+                    <td>2017-03-30 18:00</td>
+                    <td>充值</td>
+                    <td>30156828.00</td>
+                    <td>30156828.00</td>
+                    <td>描述描述</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>账户账户01</td>
+                    <td>mingcheng</td>
+                    <td>服务类型A</td>
+                    <td>类型A</td>
+                    <td>2017-03-30 18:00</td>
+                    <td>充值</td>
+                    <td>30156828.00</td>
+                    <td>30156828.00</td>
+                    <td>描述描述</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>账户账户01</td>
+                    <td>mingcheng</td>
+                    <td>服务类型A</td>
+                    <td>类型A</td>
+                    <td>2017-03-30 18:00</td>
+                    <td>充值</td>
+                    <td>30156828.00</td>
+                    <td>30156828.00</td>
+                    <td>描述描述</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>账户账户01</td>
+                    <td>mingcheng</td>
+                    <td>服务类型A</td>
+                    <td>类型A</td>
+                    <td>2017-03-30 18:00</td>
+                    <td>充值</td>
+                    <td>30156828.00</td>
+                    <td>30156828.00</td>
+                    <td>描述描述</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>账户账户01</td>
+                    <td>mingcheng</td>
+                    <td>服务类型A</td>
+                    <td>类型A</td>
+                    <td>2017-03-30 18:00</td>
+                    <td>充值</td>
+                    <td>30156828.00</td>
+                    <td>30156828.00</td>
+                    <td>描述描述</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--补录交易明细-->
+<div class="modal fade" id="makeup_detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog commonModal" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">补录交易明细</h4>
+            </div>
+            <div class="modal-body transaction_file_down">
+                <h2>仅支持Excel文件 <a href="#" class="template_download "><img src="imgs/down.png"> 模板下载</a></h2>
+                <h2 >
+                    <input type="text" class="select_input" id="show_file_path" placeholder="请选择要导入的文件">
+                    <a class="file-upload">
+                        <i class="fa fa-file-o"></i>
+                        <input type="file" id="file_path" name="file_name" accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"> 选择文件
+                    </a>
+                </h2>
+            </div>
+            <div class="modal-footer">
+                <div class="btn_group">
+                    <a href="#" class="btn_cancel" data-dismiss="modal">取消</a>
+                    <a class="station_space"></a>
+                    <a href="#" class="btn_save">确定</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

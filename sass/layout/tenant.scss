@@ -1,0 +1,35 @@
+/****租户管理**/
+.operation_column a{
+  border: 1px solid #c3aa7e;
+  color: #c3aa7e;
+  padding: 0px 10px;
+  @include border-radius(3px);
+  &:hover {
+    background: #c3aa7e;
+    color: #fff;
+  }
+}
+.unbind_account {
+  padding: 50px;
+  text-align: center;
+  h2 {
+    padding: 15px;
+    span {
+      color: #c3aa7e;
+    }
+  }
+}
+.bind_account {
+  padding: 50px;
+  text-align: center;
+  select {
+    color: black;
+  }
+  h2 {
+    input{
+      border: 1px solid #d0ccaf;
+      border-radius: 3px;
+      width: 40%;
+    }
+  }
+}

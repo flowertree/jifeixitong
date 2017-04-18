@@ -1,0 +1,9 @@
+/****分页**/
+
+.pagination li a {
+  color: #d0ba94;
+}
+.pagination li a:hover,.pagination > li > a:focus{
+  background: #d0ba94;
+  color: #fff;
+}

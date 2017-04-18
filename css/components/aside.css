@@ -1,0 +1,59 @@
+.main-logo {
+  height: 50px;
+  line-height: 50px;
+  font-size: 20px;
+  color: #fafbfc;
+  margin: 0 0 34px 34px; }
+
+.main-sidebar {
+  width: 230px;
+  height: 768px;
+  padding-top: 0;
+  background-color: #c0e4fc;
+  background-image: -webkit-linear-gradient(bottom, #013a75, #118eff 50%, #013a75);
+  background-image: -moz-linear-gradient(bottom, #013a75, #118eff 50%, #013a75);
+  background-image: -o-linear-gradient(bottom, #013a75, #118eff 50%, #013a75);
+  background-image: -ms-linear-gradient(bottom, #013a75, #118eff 50%, #013a75);
+  background-image: linear-gradient(to top, #013a75, #118eff 50%, #013a75); }
+
+.sidebar-menu {
+  margin-left: 34px; }
+
+.skin-blue .sidebar a {
+  color: #fafbfc; }
+
+.sidebar-menu > li > a {
+  padding: 0;
+  height: 50px;
+  line-height: 50px; }
+
+.sidebar-menu > li > a i, .sidebar-menu .treeview-menu > li > a i {
+  font-size: 22px;
+  margin: 14px 10px 0 0; }
+
+.skin-blue .sidebar-menu > li:hover > a, .skin-blue .sidebar-menu > li.active > a, .skin-blue .sidebar-menu > li > a {
+  background: none;
+  border-left: 0; }
+
+.sidebar-menu .treeview-menu {
+  padding: 0; }
+
+.skin-blue .sidebar-menu > li > .treeview-menu {
+  margin: 0;
+  background: none; }
+
+.skin-blue .treeview-menu > li > a {
+  color: #fafbfc; }
+
+.sidebar-menu .treeview-menu > li > a {
+  padding: 0;
+  height: 50px;
+  line-height: 50px; }
+
+.hover_line {
+  height: 1px;
+  border-bottom: 1px solid #fafbfc;
+  /*width: 57%;*/
+  margin: 24px 0 0 10px; }
+
+/*# sourceMappingURL=aside.css.map */

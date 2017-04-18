@@ -1,0 +1,10 @@
+
+
+/*background-image(linear-gradient(bottom, #013a75, #118eff 50%, #013a75))*/
+@mixin background-image{
+  background-image: -webkit-linear-gradient(bottom, #013a75, #118eff 50%, #013a75);
+  background-image: -moz-linear-gradient(bottom, #013a75, #118eff 50%, #013a75);
+  background-image: -o-linear-gradient(bottom, #013a75, #118eff 50%, #013a75);
+  background-image: -ms-linear-gradient(bottom, #013a75, #118eff 50%, #013a75);
+  background-image: linear-gradient(to top, #013a75, #118eff 50%, #013a75);
+}

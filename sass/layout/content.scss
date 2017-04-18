@@ -1,0 +1,13 @@
+@import "../components/common-variable";
+@import "../components/modal";
+@import "../components/table";
+@import "../components/pagination";
+@import "overview";
+@import "account";
+@import "tenant";
+@import "discount";
+@import "transaction";
+@import "bill";
+.content-wrapper {
+  background: #e8e8e8;
+}

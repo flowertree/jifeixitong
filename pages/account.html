@@ -1,0 +1,237 @@
+<div id="account_vue">
+    <div class="common_container">
+        <h2>账户管理</h2>
+        <div class="common_search">
+            <label class="account_name">账户名称</label>
+            <input type="text" placeholder="关键字" v-model="keywords">
+            <select v-model="accountType">
+                <option value="">请选择类型</option>
+                <option value="0">启用</option>
+                <option value="1">禁用</option>
+            </select>
+            <span @click="account_search"><i class="fa fa-search"></i> 查 询</span>
+            <span class="fr export_bill" style="margin-left: 10px;" data-toggle="modal" data-target="#account_add"><i class="fa fa-plus"></i> 新增</span>
+            <span class="fr export_bill" data-toggle="modal" data-target="#account_recharge"><i class="fa fa-jpy"></i> 充值</span>
+        </div>
+        <div class="common_table">
+            <table id="account_table">
+                <thead>
+                <tr>
+                    <th>序号</th>
+                    <th>账户名称</th>
+                    <th>逾期周期</th>
+                    <th>预付金额</th>
+                    <th>结算单日期</th>
+                    <th>是否复制</th>
+                    <th>结算方式</th>
+                    <th>父账户ID</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(data,index) in datas">
+                    <td>{{index+1}}</td>
+                    <td>{{data.name}}</td>
+                    <td>{{data.overdue_cycle}}</td>
+                    <td>{{data.prepaid_amount}}</td>
+                    <td>{{data.statement_day}}</td>
+                    <td>{{data.is_compound == false ? '否' : '是'}}</td>
+                    <td>{{data.clearing_mode == 'NRT' ? '非实时' : '实时'}}</td>
+                    <td>{{data.parent_account_id}}</td>
+                    <td>{{data.disabled == false ? '启用' : '禁用'}}</td>
+                    <td class="operation_column">
+                        <a href="#" @click="account_detail($event,index)">详情</a>
+                        <a href="#" @click="account_edit($event,index)">编辑</a>
+                        <a href="#" @click="account_tenant($event,index)">租户</a>
+                        <a href="#" v-if="data.disabled == false">禁用</a>
+                        <a href="#" v-else>启用</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="10" v-show="isShow" v-html="noDatas">{{noDatas}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--充值-->
+    <div class="modal fade" id="account_recharge" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog commonModal" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">充值</h4>
+                </div>
+                <div class="modal-body account_recharge">
+                    <h2>账户名称
+                        <select v-model="account_name" style="width: 241px;background-position-x: 223px;color: #383838" @change="account_select">
+                            <option value="-1">请选择</option>
+                            <option v-for="(data,index) in accountNameDatas" v-bind:value="index">{{data.name}}</option>
+                        </select>
+                    </h2>
+                    <input type="hidden" v-model="recharge_account_id">
+                    <span class="account_balance">当前可用余额<span>{{available_balance}}</span>元</span>
+                    <h2>充值金额 <input type="number" placeholder="请输入充值金额" v-model="recharge_amount"/></h2>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn_group">
+                        <a href="#" class="btn_cancel" data-dismiss="modal">取消</a>
+                        <a class="station_space"></a>
+                        <a href="#" class="btn_save" @click="account_recharge">确定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--新增-->
+    <div class="modal fade" id="account_add" tabindex="-1" role="dialog" aria-labelledby="myModalLabels">
+        <div class="modal-dialog commonModal" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabes">新增</h4>
+                </div>
+                <div class="modal-body account_add">
+                    <h2>
+                        <span class="fl">账户名称  <input type="text" placeholder="请输入账户名称" v-model="new_account_name"/></span>
+                        <span class="fr">逾期周期 <input type="text" placeholder="请输入逾期周期" v-model="overdue_cycle"/></span>
+                    </h2>
+                    <span class="fl errorTitle">该用户已存在</span>
+                    <h2>
+                        <span class="fl">预付金额  <input type="text" placeholder="请输入金额" v-model="prepaid_amount"/></span>
+                        <span class="fr">结算单日期 <input type="text" placeholder="请输入结算单日期" v-model="statement_day"/></span>
+                    </h2>
+                    <h2>
+                   <span class="fl">
+                       是否复制
+                         <select v-model="compound">
+                             <option value="0">请选择是否复制</option>
+                             <option value="false">否</option>
+                             <option value="true">是</option>
+                        </select>
+                   </span>
+                        <span class="fr">
+                        结算方式
+                        <select v-model="clear_mode">
+                            <option value="0">请选择结算方式</option>
+                            <option value="NRT">非实时</option>
+                            <option value="RT">实时</option>
+                        </select>
+                    </span>
+                    </h2>
+                    <h2>
+                        <span class="fl">父账户ID <input type="text" placeholder="请输入父账户ID" v-model="parent_account_id"/></span>
+                        <span class="fr">
+                        状态
+                        <select v-model="status">
+                            <option value="-1">请选择状态</option>
+                            <option value="0">启用</option>
+                            <option value="1">禁用</option>
+                        </select>
+                    </span>
+                    </h2>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn_group">
+                        <a href="#" class="btn_cancel" data-dismiss="modal">取消</a>
+                        <a class="station_space"></a>
+                        <a href="#" class="btn_save" @click="account_add_save">确定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--编辑-->
+    <div class="modal fade" id="account_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabelss">
+        <div class="modal-dialog commonModal" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabess">编辑</h4>
+                </div>
+                <div class="modal-body account_add" v-for="data in modalEditDatas">
+                    <h2>
+                        <input type="hidden" v-model="account_id" v-bind:value="data.id">
+                        <span class="fl">账户名称：<b>{{data.name}}</b></span>
+                        <span class="fr">逾期周期 <input type="text" placeholder="" v-model="overdue_cycle"/></span>
+                    </h2>
+                    <h2>
+                        <span class="fl">预付金额  <input type="text" placeholder="请输入金额" v-model="prepaid_amount"/></span>
+                        <span class="fr">结算单日期 <input type="text" placeholder="" v-model="statement_day"/></span>
+                    </h2>
+                    <h2>
+                   <span class="fl">
+                       是否复制
+                       <select v-model="compound">
+                           <option value="false">否</option>
+                           <option value="true">是</option>
+                        </select>
+                   </span>
+                        <span class="fr">
+                        结算方式
+                        <select v-model="clear_mode">
+                            <option value="NRT">非实时</option>
+                            <option value="RT">实时</option>
+                        </select>
+                    </span>
+                    </h2>
+                    <h2>
+                        <span class="fl">父账户ID <input type="text" placeholder="请输入ID" v-model="parent_account_id"/></span>
+                        <span class="fr">
+                        状态
+                        <select v-model="status">
+                            <option value="0">启用</option>
+                            <option value="1">禁用</option>
+                        </select>
+                    </span>
+                    </h2>
+                    <h2>
+                        <span class="fl">创建时间：<span style="padding: 0;">{{data.create_time}}</span></span>
+                        <span class="fr">
+                       创建人：<span style="padding: 0;">{{data.creator}}</span>
+                    </span>
+                    </h2>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn_group">
+                        <a href="#" class="btn_cancel" data-dismiss="modal">取消</a>
+                        <a class="station_space"></a>
+                        <a href="#" class="btn_save" @click="account_edit_save">确定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--租户设置-->
+    <div class="modal fade" id="account_tenant" tabindex="-1" role="dialog" aria-labelledby="myModalLab">
+        <div class="modal-dialog commonModal" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLab">租户设置</h4>
+                </div>
+                <div class="modal-body tenant_list">
+                    <span>zuhumingcheng08<img src="imgs/del.png" alt="删除"/></span>
+                    <span>zuhumingcheng08<img src="imgs/del.png" alt="删除"/></span>
+                    <span>zuhumingcheng08<img src="imgs/del.png" alt="删除"/></span>
+                    <span>zuhumingcheng08<img src="imgs/del.png" alt="删除"/></span>
+                    <span>zuhumingcheng08<img src="imgs/del.png" alt="删除"/></span>
+                    <span>zuhumingcheng08<img src="imgs/del.png" alt="删除"/></span>
+                    <span>zuhumingcheng08<img src="imgs/del.png" alt="删除"/></span>
+                    <span>zuhumingcheng08<img src="imgs/del.png" alt="删除"/></span>
+                    <span>zuhumingcheng08<img src="imgs/del.png" alt="删除"/></span>
+                    <span>zuhumingcheng08<img src="imgs/del.png" alt="删除"/></span>
+                    <span class="new_add"><i class="fa fa-plus"></i> 新增</span>
+                </div>
+                <div class="modal-footer">
+                    <div class="btn_group">
+                        <a href="#" class="btn_cancel" data-dismiss="modal">取消</a>
+                        <a class="station_space"></a>
+                        <a href="#" class="btn_save">确定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,251 @@
+/****总览页**/
+.overview_container {
+  margin-bottom: 15px;
+  display: inline-block;
+}
+.resizeBtn {
+  float: right;
+  margin-top: -30px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.countNums {
+  background: url("../../imgs/countNums.png") no-repeat;
+  width: 502px;
+  height: 292px;
+  margin: 20px;
+  display: inline-block;
+}
+.containerFixed  {
+  position: absolute
+}
+.countNums h2 {
+  padding: 60px 0px 0px 30px;
+  font-size: 64px;
+  color: #fff;
+}
+.countNums h2 i{
+  font-size: 20px;
+  font-style: normal;
+}
+
+.countNums .counts{
+  padding: 29px;
+  font-size: 32px;
+  color: #fff;
+}
+.countNums .currentVal {
+  font-size: 18px;
+  float: right;
+  padding: 26px;
+  margin-top: 215px;
+}
+.countNums .currentVal span{
+  font-size: 26px;
+}
+.countNums .currentVal i{
+  font-size: 22px;
+  font-style: normal;
+}
+.centerLayout {
+  background: url("../../imgs/centerLayout.png");
+  width: 302px;
+  height: 292px;
+  display: inline-block;
+  margin: 20px 5px;
+}
+.containerCenter {
+  width: 154px;
+  height: 146px;
+  padding: 20px 0px 0px 0px;
+  position: absolute;
+}
+.containerCenter h2{
+  font-size: 20px;
+  padding: 30px 0px 15px 0px;
+  text-align: center;
+}
+.containerCenter h2 i {
+  font-style: normal;
+  font-size: 14px;
+}
+.containerCenter .actualArrival {
+  text-align: center;
+  color: #c3aa7e;
+}
+.noCount {
+  margin-left: 144px;
+}
+.overdueBill {
+  margin-top: 130px;
+}
+.oldBill {
+  margin-top: 130px;
+  margin-left: 144px;
+}
+.countTop {
+  width:610px;
+  height: 292px;
+  background:#fff;
+  margin:20px;
+  display: inline-block;
+  @include border-radius(3px);
+  position: absolute;
+}
+.countTop .h2Title {
+  height: 40px;
+  border-bottom: 1px solid #dad8cb;
+}
+.countTop .h2Title h2 {
+  line-height: 40px;
+  padding: 0px 10px;
+  color: #383838;
+  float: left;
+}
+.countTop .h2Title .countType {
+  float: left;
+}
+.countTop .h2Title .countType span:first-child {
+  padding: 1px 4px;
+  background: #f4f3f0;
+  color: #d0ba94;
+  border-radius: 4px 0 0 4px;
+  cursor: pointer;
+  margin-right: -3px;
+}
+.activeTop10 {
+  padding: 1px 4px !important;
+  background: #d0ba94 !important;
+  color: #fff !important;
+  border-radius: 4px 0 0 4px !important;
+  cursor: pointer !important;
+}
+.countTop .h2Title .countType span:last-child {
+  background: #f4f3f0;
+  padding: 1px 4px;
+  border-radius: 0px 4px 4px 0px;
+  color: #d0ba94;
+  cursor: pointer;
+}
+
+.activeConsume {
+  background: #d0ba94 !important;
+  padding: 1px 4px !important;
+  border-radius: 0px 4px 4px 0px !important;
+  color: #fff !important;
+  cursor: pointer !important;
+}
+.countTop .h2Title p {
+  line-height: 40px;
+  float: right;
+  padding: 0px 10px;
+  color: #a8a8a8;
+}
+.countTop ul li  .titleNo {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  background: #d0ba94;
+  color: #fff;
+  border-radius: 9px;
+  text-align: center;
+  line-height: 18px;
+}
+.countTop ul {
+  padding: 15px 0px;
+}
+.countTop .splitLine {
+  float: left;
+  height: 188px;
+  padding: 10px;
+  border-right: 1px solid #f5f2f2;
+  margin-top: 32px;
+}
+.countTop ul li {
+  padding: 10px 20px;
+  color: #5d6a75;
+}
+.countTop ul li .userTitle {
+  padding: 0px 0px 0px 13px;
+  text-overflow: ellipsis;
+  width: 110px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: -8px;
+}
+.liRight {
+  position: relative;
+  left: 290px;
+  top: -220px;
+}
+.drawcolumn {
+  background: #fff;
+  width: 500px;
+  height: 290px;
+  margin: 0px 10px 10px 22px;
+  @include border-radius(3px);
+}
+.drawcolumn .chartTitle {
+  height: 40px;
+  border-bottom: 1px solid #dad8cb;
+}
+.drawcolumn .chartTitle h2{
+  line-height: 40px;
+  padding: 0px 10px;
+  color: #383838;
+  float: left;
+}
+.drawcolumn .chartTitle p{
+  line-height: 40px;
+  float: right;
+  padding: 0px 10px;
+  color: #a8a8a8;
+}
+.tendency {
+  width: 940px;
+  margin: 0px 20px;
+}
+.proportion {
+  margin-top: 20px;
+  width: 830px;
+  clear: both;
+}
+.top10{
+  width:608px;
+  height:290px;
+  margin-top: 20px;
+}
+.top10 ul li  .titleNo {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  background: #d0ba94;
+  color: #fff;
+  border-radius: 9px;
+  text-align: center;
+  line-height: 18px;
+}
+.top10 ul {
+  padding: 15px 0px;
+}
+.top10 .splitLine {
+  float: left;
+  height: 188px;
+  padding: 10px;
+  border-right: 1px solid #f5f2f2;
+  margin-top: 16px;
+}
+.top10 ul li {
+  padding: 10px 20px;
+  color: #5d6a75;
+}
+.top10 ul li .userTitle {
+  padding: 0px 0px 0px 10px;
+}
+.activePage {
+  background: #b95c5c !important;
+}
+.liRight {
+  float: left;
+}

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": ";AAAA,YAAY;AACZ,mBAAmB;EACjB,MAAM,EAAE,iBAAiB;EACzB,KAAK,EAAE,OAAO;EACd,OAAO,EAAE,QAAQ;EACjB,aAAa,EAAE,GAAG",
+"sources": ["../../sass/layout/tenant.scss"],
+"names": [],
+"file": "tenant.css"
+}

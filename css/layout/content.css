@@ -1,0 +1,617 @@
+@charset "UTF-8";
+/***模态框*/
+.commonModal .modal-content {
+  border-radius: 3px; }
+.commonModal .modal-header {
+  background: #c3aa7e;
+  color: #fff;
+  border-radius: 3px 3px 0px 0px;
+  padding: 10px; }
+  .commonModal .modal-header .close {
+    color: #fff;
+    text-shadow: none;
+    font-weight: 100;
+    opacity: 1; }
+.commonModal .modal-footer {
+  border-top: none;
+  clear: both; }
+  .commonModal .modal-footer .btn_group {
+    text-align: center;
+    margin: 20px;
+    clear: both; }
+    .commonModal .modal-footer .btn_group .btn_cancel {
+      padding: 3px 23px;
+      color: #c3aa7e;
+      background-color: #fff;
+      -webkit-border-radius: 14px;
+      -moz-border-radius: 14px;
+      border-radius: 14px;
+      -webkit-box-shadow: 0 1px 3px #d0ccaf;
+      -moz-box-shadow: 0 1px 3px #d0ccaf;
+      box-shadow: 0 1px 3px #d0ccaf; }
+    .commonModal .modal-footer .btn_group .btn_save {
+      padding: 3px 23px;
+      color: #fff;
+      background-color: #c3aa7e;
+      -webkit-border-radius: 14px;
+      -moz-border-radius: 14px;
+      border-radius: 14px;
+      -webkit-box-shadow: 0 1px 3px #d0ccaf;
+      -moz-box-shadow: 0 1px 3px #d0ccaf;
+      box-shadow: 0 1px 3px #d0ccaf; }
+    .commonModal .modal-footer .btn_group .station_space {
+      padding: 33px; }
+
+/***common table***/
+.common_container {
+  padding: 0px 20px; }
+  .common_container h2 {
+    font-size: 18px;
+    color: #383838; }
+  .common_container .common_search {
+    padding: 16px 0px; }
+    .common_container .common_search input {
+      border: 1px solid #d0ccaf;
+      border-radius: 3px;
+      width: 250px;
+      height: 24px; }
+    .common_container .common_search span {
+      width: 76px;
+      height: 22px;
+      background-color: #fff;
+      padding: 2px 13px;
+      color: #c3aa7e;
+      cursor: pointer;
+      -webkit-border-radius: 11px;
+      -moz-border-radius: 11px;
+      border-radius: 11px;
+      -webkit-box-shadow: 0 1px 3px #d0ccaf;
+      -moz-box-shadow: 0 1px 3px #d0ccaf;
+      box-shadow: 0 1px 3px #d0ccaf; }
+  .common_container .common_table {
+    border-radius: 3px;
+    overflow: hidden; }
+    .common_container .common_table table {
+      width: 100%;
+      color: #5d6a75; }
+      .common_container .common_table table thead tr {
+        background: #c3aa7e;
+        color: #fff;
+        height: 36px; }
+        .common_container .common_table table thead tr th {
+          text-align: center; }
+          .common_container .common_table table thead tr th input {
+            margin: 5px 13px; }
+        .common_container .common_table table thead tr .set_width {
+          width: 100px; }
+      .common_container .common_table table tbody tr:nth-child(even) {
+        background: #f4f3f0; }
+        .common_container .common_table table tbody tr:nth-child(even) td {
+          padding: 5px 0px;
+          text-align: center; }
+      .common_container .common_table table tbody tr:nth-child(odd) {
+        background: #fff; }
+        .common_container .common_table table tbody tr:nth-child(odd) td {
+          padding: 5px 0px;
+          text-align: center; }
+
+/****分页**/
+.pagination li a {
+  color: #d0ba94; }
+
+.pagination li a:hover, .pagination > li > a:focus {
+  background: #d0ba94;
+  color: #fff; }
+
+/****总览页**/
+.overview_container {
+  margin-bottom: 15px;
+  display: inline-block; }
+
+.resizeBtn {
+  float: right;
+  margin-top: -30px;
+  margin-right: 10px;
+  cursor: pointer; }
+
+.countNums {
+  background: url("../../imgs/countNums.png") no-repeat;
+  width: 502px;
+  height: 292px;
+  margin: 20px;
+  display: inline-block; }
+
+.containerFixed {
+  position: absolute; }
+
+.countNums h2 {
+  padding: 60px 0px 0px 30px;
+  font-size: 64px;
+  color: #fff; }
+
+.countNums h2 i {
+  font-size: 20px;
+  font-style: normal; }
+
+.countNums .counts {
+  padding: 29px;
+  font-size: 32px;
+  color: #fff; }
+
+.countNums .currentVal {
+  font-size: 18px;
+  float: right;
+  padding: 26px;
+  margin-top: 215px; }
+
+.countNums .currentVal span {
+  font-size: 26px; }
+
+.countNums .currentVal i {
+  font-size: 22px;
+  font-style: normal; }
+
+.centerLayout {
+  background: url("../../imgs/centerLayout.png");
+  width: 302px;
+  height: 292px;
+  display: inline-block;
+  margin: 20px 5px; }
+
+.containerCenter {
+  width: 154px;
+  height: 146px;
+  padding: 20px 0px 0px 0px;
+  position: absolute; }
+
+.containerCenter h2 {
+  font-size: 20px;
+  padding: 30px 0px 15px 0px;
+  text-align: center; }
+
+.containerCenter h2 i {
+  font-style: normal;
+  font-size: 14px; }
+
+.containerCenter .actualArrival {
+  text-align: center;
+  color: #c3aa7e; }
+
+.noCount {
+  margin-left: 144px; }
+
+.overdueBill {
+  margin-top: 130px; }
+
+.oldBill {
+  margin-top: 130px;
+  margin-left: 144px; }
+
+.countTop {
+  width: 610px;
+  height: 292px;
+  background: #fff;
+  margin: 20px;
+  display: inline-block;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  position: absolute; }
+
+.countTop .h2Title {
+  height: 40px;
+  border-bottom: 1px solid #dad8cb; }
+
+.countTop .h2Title h2 {
+  line-height: 40px;
+  padding: 0px 10px;
+  color: #383838;
+  float: left; }
+
+.countTop .h2Title .countType {
+  float: left; }
+
+.countTop .h2Title .countType span:first-child {
+  padding: 1px 4px;
+  background: #f4f3f0;
+  color: #d0ba94;
+  border-radius: 4px 0 0 4px;
+  cursor: pointer;
+  margin-right: -3px; }
+
+.activeTop10 {
+  padding: 1px 4px !important;
+  background: #d0ba94 !important;
+  color: #fff !important;
+  border-radius: 4px 0 0 4px !important;
+  cursor: pointer !important; }
+
+.countTop .h2Title .countType span:last-child {
+  background: #f4f3f0;
+  padding: 1px 4px;
+  border-radius: 0px 4px 4px 0px;
+  color: #d0ba94;
+  cursor: pointer; }
+
+.activeConsume {
+  background: #d0ba94 !important;
+  padding: 1px 4px !important;
+  border-radius: 0px 4px 4px 0px !important;
+  color: #fff !important;
+  cursor: pointer !important; }
+
+.countTop .h2Title p {
+  line-height: 40px;
+  float: right;
+  padding: 0px 10px;
+  color: #a8a8a8; }
+
+.countTop ul li .titleNo {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  background: #d0ba94;
+  color: #fff;
+  border-radius: 9px;
+  text-align: center;
+  line-height: 18px; }
+
+.countTop ul {
+  padding: 15px 0px; }
+
+.countTop .splitLine {
+  float: left;
+  height: 188px;
+  padding: 10px;
+  border-right: 1px solid #f5f2f2;
+  margin-top: 32px; }
+
+.countTop ul li {
+  padding: 10px 20px;
+  color: #5d6a75; }
+
+.countTop ul li .userTitle {
+  padding: 0px 0px 0px 13px;
+  text-overflow: ellipsis;
+  width: 110px;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  margin: -8px; }
+
+.liRight {
+  position: relative;
+  left: 290px;
+  top: -220px; }
+
+.drawcolumn {
+  background: #fff;
+  width: 500px;
+  height: 290px;
+  margin: 0px 10px 10px 22px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px; }
+
+.drawcolumn .chartTitle {
+  height: 40px;
+  border-bottom: 1px solid #dad8cb; }
+
+.drawcolumn .chartTitle h2 {
+  line-height: 40px;
+  padding: 0px 10px;
+  color: #383838;
+  float: left; }
+
+.drawcolumn .chartTitle p {
+  line-height: 40px;
+  float: right;
+  padding: 0px 10px;
+  color: #a8a8a8; }
+
+.tendency {
+  width: 940px;
+  margin: 0px 20px; }
+
+.proportion {
+  margin-top: 20px;
+  width: 830px;
+  clear: both; }
+
+.top10 {
+  width: 608px;
+  height: 290px;
+  margin-top: 20px; }
+
+.top10 ul li .titleNo {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  background: #d0ba94;
+  color: #fff;
+  border-radius: 9px;
+  text-align: center;
+  line-height: 18px; }
+
+.top10 ul {
+  padding: 15px 0px; }
+
+.top10 .splitLine {
+  float: left;
+  height: 188px;
+  padding: 10px;
+  border-right: 1px solid #f5f2f2;
+  margin-top: 16px; }
+
+.top10 ul li {
+  padding: 10px 20px;
+  color: #5d6a75; }
+
+.top10 ul li .userTitle {
+  padding: 0px 0px 0px 10px; }
+
+.activePage {
+  background: #b95c5c !important; }
+
+.liRight {
+  float: left; }
+
+/****账户管理**/
+.account_name {
+  font-weight: inherit;
+  margin: 0; }
+
+.account_recharge {
+  padding: 30px 0px 15px 0px;
+  text-align: center; }
+  .account_recharge h2 {
+    margin: 28px 0px 0px 0px; }
+    .account_recharge h2 input {
+      border: 1px solid #d0ccaf;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      width: 40%; }
+  .account_recharge h2:last-child {
+    margin: 15px 0px 20px 0px; }
+  .account_recharge .account_balance {
+    margin-left: 211px;
+    color: #c3aa7e;
+    display: flex; }
+
+.account_add {
+  text-align: center; }
+  .account_add h2 {
+    padding: 10px;
+    clear: both; }
+    .account_add h2 span {
+      padding: 5px 20px; }
+      .account_add h2 span select {
+        color: black; }
+      .account_add h2 span b {
+        font-weight: lighter;
+        color: #c3aa7e; }
+  .account_add .errorTitle {
+    padding: 0px 90px;
+    color: #c3aa7e; }
+
+.account_detail_table {
+  background: #f4f3f0 !important;
+  color: #c3aa7e !important; }
+
+.account_info {
+  background: #fff;
+  text-align: center;
+  -webkit-border-radius: 3px 3px 0px 0px;
+  -moz-border-radius: 3px 3px 0px 0px;
+  border-radius: 3px 3px 0px 0px; }
+  .account_info .account_title {
+    padding: 30px 0px; }
+    .account_info .account_title span {
+      padding: 10px 25px;
+      border-bottom: 2px solid #f4f3f0;
+      cursor: pointer; }
+    .account_info .account_title .activeAccount {
+      border-bottom: 2px solid #c3aa7e; }
+  .account_info .account_content {
+    margin: 40px; }
+    .account_info .account_content div {
+      display: inline-block;
+      text-align: left; }
+      .account_info .account_content div p {
+        padding: 10px 20px; }
+  .account_info .tenant_content {
+    margin: 40px; }
+    .account_info .tenant_content table {
+      margin: 10px auto; }
+      .account_info .tenant_content table th, .account_info .tenant_content table td {
+        text-align: center; }
+      .account_info .tenant_content table td {
+        padding: 10px 50px; }
+
+.recharge_details {
+  border-top: 2px solid #f4f3f0;
+  padding: 23px; }
+  .recharge_details .dividing_line {
+    display: block;
+    background: #fff;
+    width: 60px;
+    margin: -36px auto; }
+  .recharge_details select {
+    margin-top: 50px; }
+  .recharge_details .recharge_title {
+    margin-left: 50px; }
+    .recharge_details .recharge_title .recharge_amount {
+      font-size: 16px;
+      color: #c3aa7e;
+      font-weight: 600; }
+
+.tenant_list span {
+  display: inline-block;
+  padding: 10px 20px; }
+  .tenant_list span img {
+    cursor: pointer;
+    padding: 0px 3px; }
+  .tenant_list span input {
+    height: 28px;
+    width: 128px; }
+.tenant_list .span_del {
+  text-decoration: line-through;
+  color: #d6d6d6; }
+.tenant_list .new_add {
+  border: 1px solid #c3aa7e;
+  border-style: dashed;
+  padding: 2px 60px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+  color: #c3aa7e; }
+
+/****租户管理**/
+.operation_column a {
+  border: 1px solid #c3aa7e;
+  color: #c3aa7e;
+  padding: 0px 10px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px; }
+  .operation_column a:hover {
+    background: #c3aa7e;
+    color: #fff; }
+
+.unbind_account {
+  padding: 50px;
+  text-align: center; }
+  .unbind_account h2 {
+    padding: 15px; }
+    .unbind_account h2 span {
+      color: #c3aa7e; }
+
+.bind_account {
+  padding: 50px;
+  text-align: center; }
+  .bind_account select {
+    color: black; }
+  .bind_account h2 input {
+    border: 1px solid #d0ccaf;
+    border-radius: 3px;
+    width: 40%; }
+
+/****折扣管理**/
+.discount_tabs {
+  margin-right: 6px; }
+  .discount_tabs b {
+    font-weight: lighter; }
+  .discount_tabs b:first-child {
+    padding: 2px 4px;
+    background: #f4f3f0;
+    color: #d0ba94;
+    border-radius: 4px 0 0 4px;
+    cursor: pointer; }
+  .discount_tabs b:last-child {
+    background: #f4f3f0;
+    padding: 2px 4px;
+    border-radius: 0px 4px 4px 0px;
+    color: #d0ba94;
+    margin-left: -3px;
+    cursor: pointer; }
+  .discount_tabs .active_time_tabs {
+    padding: 2px 4px !important;
+    background: #d0ba94 !important;
+    color: #fff !important;
+    border-radius: 4px 0 0 4px !important;
+    cursor: pointer !important; }
+  .discount_tabs .active_section_tabs {
+    background: #d0ba94 !important;
+    padding: 2px 4px !important;
+    border-radius: 0px 4px 4px 0px !important;
+    color: #fff !important;
+    cursor: pointer !important; }
+
+.discount_table th {
+  background: #f4f3f0;
+  color: #c3aa7e; }
+.discount_table td input {
+  text-align: center; }
+.discount_table td span {
+  border: 1px solid #d0ccaf;
+  padding: 1px;
+  margin: 0px 22px;
+  background: #fff;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px; }
+  .discount_table td span i {
+    padding: 4px 10px;
+    border-right: 1px solid #d0ccaf;
+    cursor: pointer; }
+  .discount_table td span i:first-child {
+    margin-left: -1px; }
+  .discount_table td span i:last-child {
+    border-right: none;
+    margin-right: -1px; }
+  .discount_table td span .iActive {
+    background: #d0ccaf;
+    color: #fff; }
+.discount_table td a {
+  border: 1px solid #d0ccaf;
+  border-style: dashed;
+  padding: 4px 212px;
+  cursor: pointer;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  display: block;
+  color: #c3aa7e; }
+
+/****交易管理**/
+.makeup_detail {
+  float: right;
+  width: 133px !important;
+  line-height: 20px;
+  padding: 2px 16px !important; }
+
+.transaction_file_down {
+  padding: 50px 15px; }
+  .transaction_file_down .template_download {
+    color: #d0ba94;
+    cursor: pointer; }
+  .transaction_file_down h2 {
+    padding: 10px 0px 5px 53px; }
+    .transaction_file_down h2 .select_input {
+      margin-right: 12px;
+      border: 1px solid #d0ba94;
+      border-radius: 3px;
+      width: 66%; }
+    .transaction_file_down h2 .file-upload {
+      padding: 0px 10px;
+      height: 22px;
+      line-height: 20px;
+      position: relative;
+      cursor: pointer;
+      color: #d0ba94;
+      border: 1px solid #d0ba94;
+      border-radius: 4px;
+      display: inline-block; }
+    .transaction_file_down h2 .file-upload input {
+      position: absolute;
+      width: 450px;
+      right: 0;
+      top: 0;
+      opacity: 0;
+      filter: alpha(opacity=0);
+      cursor: pointer; }
+
+/****账单管理**/
+.export_bill {
+  line-height: 19px;
+  padding: 2px 15px !important; }
+
+.bill_table input {
+  height: 13px; }
+
+.content-wrapper {
+  background: #e8e8e8; }
+
+/*# sourceMappingURL=content.css.map */
